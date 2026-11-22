@@ -7,7 +7,7 @@ interface Props {
   aside?: ReactNode
 }
 
-/** "[02] About ———— aside" — the same header for every home section. */
+/** "[01] Portfolio ———— aside" — the same header for every home section. */
 export function SectionHead({ index, title, aside }: Props) {
   return (
     <div className={styles.head} data-reveal="">

@@ -37,6 +37,22 @@
   color: var(--fog);
 }
 
+.row2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px 18px;
+}
+.groupLabel {
+  align-self: center;
+  margin-right: 4px;
+  font-family: var(--f-mono);
+  font-size: var(--t-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+
 .filters,
 .views {
   display: flex;
@@ -319,7 +335,8 @@
     justify-items: start;
   }
   .filters,
-  .views {
+  .views,
+  .row2 {
     justify-content: flex-start;
   }
   .blurb {

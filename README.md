@@ -26,7 +26,6 @@ npm run preview    # локальный просмотр собранной ве
 |---|---|
 | Ник, подпись, роль, описание, заголовок вкладки | `brand` |
 | Фраза на первом экране | `hero.statement` |
-| Заголовок, короткие фразы и биография | `about` |
 | Инструменты и чем каждый «питает» нод-граф | `tools`, `disciplines` |
 | Email, Instagram, ArtStation, Behance, Telegram | `contact` |
 | Категории 01–05 | `categories` |
@@ -68,7 +67,7 @@ blender -b --factory-startup --python tools/encode_web_video.py -- "C:/abs/path/
 src/config/        site.config.ts (весь контент), types.ts (схема)
 src/app/           App (роуты, скролл, пасхалка), TransitionProvider (бакет-переходы, экран загрузки), boot
 src/pages/         Home, Project (страница проекта), Viewport (секретная), NotFound
-src/sections/      Hero, Work, About, Toolset, Contact
+src/sections/      Hero, Work (портфолио), Toolset, Contact
 src/components/    Nav, Cursor, BucketImage, VideoPlayer, Lightbox, NeonSignature, Magnetic, …
 src/three/         sculpture.ts (WebGL-камень, ленивый чанк), webgl.ts (проверка/фолбэк)
 src/animations/    buckets (порядок спирали Cycles), tileWipe, reveal, smoothScroll (Lenis)

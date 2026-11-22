@@ -46,6 +46,8 @@ export interface Project {
   title: string
   category: CategoryId
   year: number
+  /** 'YYYY-MM-DD' — used by the "Newest / Oldest" sort; without it the project sorts by year only */
+  date?: string
   /** one or two sentences — shown in the gallery and at the top of the project page */
   summary: string
   cover: ImageMedia
@@ -88,11 +90,6 @@ export interface SiteConfig {
   }
   hero: {
     statement: string
-  }
-  about: {
-    headline: string
-    lines: string[]
-    bio: string[]
   }
   disciplines: string[]
   tools: Tool[]

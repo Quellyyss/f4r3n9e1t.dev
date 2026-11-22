@@ -7,8 +7,7 @@ import { Magnetic } from './Magnetic'
 import styles from './Nav.module.css'
 
 export const SECTIONS = [
-  { id: 'work', label: 'Work' },
-  { id: 'about', label: 'About' },
+  { id: 'work', label: 'Portfolio' },
   { id: 'toolset', label: 'Toolset' },
   { id: 'contact', label: 'Contact' },
 ] as const

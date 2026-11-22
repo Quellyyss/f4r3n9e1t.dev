@@ -184,7 +184,7 @@ export function Toolset() {
   const wide = useMediaQuery('(min-width: 900px)')
   return (
     <section id="toolset" className={`wrap ${styles.toolset}`} aria-labelledby="toolset-title">
-      <SectionHead index="03" title="Toolset" aside={wide ? 'Drag the nodes' : undefined} />
+      <SectionHead index="02" title="Toolset" aside={wide ? 'Drag the nodes' : undefined} />
       <div className={styles.head}>
         <RevealText as="h2" id="toolset-title" text="Made in Blender. Driven by imagination." className={styles.h2} />
         <p className={styles.note} data-reveal="">

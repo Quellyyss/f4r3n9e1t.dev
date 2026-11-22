@@ -5,6 +5,8 @@ import { hasWebGL } from '../three/webgl'
 import type { Sculpture } from '../three/sculpture'
 import { hasFinePointer, prefersReducedMotion, useFinePointer } from '../hooks/useMediaQuery'
 import { NeonSignature } from '../components/NeonSignature'
+import { Magnetic } from '../components/Magnetic'
+import { TransitionLink } from '../components/TransitionLink'
 import styles from './Hero.module.css'
 
 const smoothstep = (a: number, b: number, x: number) => {
@@ -37,6 +39,9 @@ function Word({ lines, refs }: { lines: string[]; refs?: RefObject<HTMLSpanEleme
     </>
   )
 }
+
+const works = site.projects.filter((p) => p.status === 'published').length
+const latestYear = Math.max(...site.projects.map((p) => p.year))
 
 export function Hero() {
   const fine = useFinePointer()
@@ -254,7 +259,7 @@ export function Hero() {
       <div ref={stageRef} className={styles.stage} data-cursor="region">
         <h1 id="hero-title" ref={wordRef} className={styles.word}>
           <span className="visually-hidden">
-            {site.brand.nick} — {site.brand.role}
+            {site.brand.nick} — 3D Portfolio. {site.brand.role}
           </span>
           <span className={styles.outline} aria-hidden="true">
             <Word lines={lines} refs={outlineLetters} />
@@ -279,9 +284,14 @@ export function Hero() {
         </div>
 
         <div className={styles.top}>
-          <p className="meta" data-reveal="">
-            {site.brand.role}
-          </p>
+          <div className={styles.kicker} data-reveal="">
+            <p className={styles.plate}>
+              <span className={styles.plateTag}>3D</span>Portfolio
+            </p>
+            <p className="meta">
+              {site.brand.role} · {String(works).padStart(2, '0')} works · {latestYear}
+            </p>
+          </div>
           <ol className={`meta ${styles.cats}`} data-reveal="" style={{ '--delay': '120ms' } as CSSProperties}>
             {site.categories.map((c) => (
               <li key={c.id}>
@@ -296,10 +306,14 @@ export function Hero() {
             {site.hero.statement}
           </p>
           <NeonSignature size="md" className={styles.neon} />
-          <p className={`meta ${styles.hint}`} data-reveal="" style={{ '--delay': '320ms' } as CSSProperties}>
-            <span>{fine ? 'Move the cursor' : 'Tap the stone'} — render region</span>
-            <span className={styles.scroll}>Scroll to render all</span>
-          </p>
+          <div className={styles.hint} data-reveal="" style={{ '--delay': '320ms' } as CSSProperties}>
+            <Magnetic>
+              <TransitionLink to="/#work" className={styles.cta} data-cursor="Open">
+                View portfolio <span aria-hidden="true">↓</span>
+              </TransitionLink>
+            </Magnetic>
+            <span className="meta">{fine ? 'Move the cursor' : 'Tap the stone'} — render region</span>
+          </div>
         </div>
       </div>
     </section>

@@ -33,7 +33,7 @@ export function Contact() {
 
   return (
     <section id="contact" className={`wrap ${styles.contact}`} aria-labelledby="contact-title">
-      <SectionHead index="04" title="Contact" aside="Commissions & collaborations" />
+      <SectionHead index="03" title="Contact" aside="Commissions & collaborations" />
 
       <h2 id="contact-title" className={styles.headline} data-reveal-words="">
         {contact.headline.map((line, i) =>

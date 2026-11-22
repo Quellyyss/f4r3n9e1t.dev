@@ -9,6 +9,37 @@ import { TransitionLink } from '../components/TransitionLink'
 import styles from './Work.module.css'
 
 const pad = (n: number) => String(n).padStart(2, '0')
+
+type SortKey = 'newest' | 'oldest' | 'az' | 'category'
+const SORTS: { id: SortKey; label: string }[] = [
+  { id: 'newest', label: 'Newest' },
+  { id: 'oldest', label: 'Oldest' },
+  { id: 'az', label: 'A–Z' },
+  { id: 'category', label: 'Category' },
+]
+/** projects without an exact date sort by their year only */
+const dateKey = (p: Project) => p.date ?? `${p.year}-00-00`
+
+function sortProjects(list: Project[], key: SortKey) {
+  const order = new Map(site.projects.map((p, i) => [p.slug, i]))
+  const catIndex = (p: Project) => site.categories.findIndex((c) => c.id === p.category)
+  const tie = (a: Project, b: Project) => order.get(a.slug)! - order.get(b.slug)!
+  // demo slots are placeholders — always after the real work
+  const demo = (p: Project) => (p.status === 'demo' ? 1 : 0)
+  return [...list].sort((a, b) => {
+    if (demo(a) !== demo(b)) return demo(a) - demo(b)
+    switch (key) {
+      case 'newest':
+        return dateKey(b).localeCompare(dateKey(a)) || tie(a, b)
+      case 'oldest':
+        return dateKey(a).localeCompare(dateKey(b)) || tie(a, b)
+      case 'az':
+        return a.title.localeCompare(b.title, 'en', { sensitivity: 'base' }) || tie(a, b)
+      case 'category':
+        return catIndex(a) - catIndex(b) || dateKey(b).localeCompare(dateKey(a)) || tie(a, b)
+    }
+  })
+}
 const categoryOf = (id: CategoryId) => site.categories.find((c) => c.id === id)!
 
 function Caption({ project, n, total }: { project: Project; n: number; total: number }) {
@@ -110,8 +141,8 @@ function Reel({ projects }: { projects: Project[] }) {
             <p className={styles.endText}>
               {pad(projects.length)} {projects.length === 1 ? 'piece' : 'pieces'} rendered.
             </p>
-            <TransitionLink to="/#about" className={styles.endLink}>
-              Who made them →
+            <TransitionLink to="/#contact" className={styles.endLink}>
+              Start a project →
             </TransitionLink>
           </div>
         </div>
@@ -215,11 +246,12 @@ function Index({ projects }: { projects: Project[] }) {
 export function Work() {
   const [filter, setFilter] = useState<CategoryId | 'all'>('all')
   const [view, setView] = useState<'reel' | 'index'>('reel')
+  const [sort, setSort] = useState<SortKey>('newest')
   const wide = useMediaQuery('(min-width: 900px)')
   const reduced = useReducedMotion()
   const projects = useMemo(
-    () => (filter === 'all' ? site.projects : site.projects.filter((p) => p.category === filter)),
-    [filter],
+    () => sortProjects(filter === 'all' ? site.projects : site.projects.filter((p) => p.category === filter), sort),
+    [filter, sort],
   )
   const count = (id: CategoryId) => site.projects.filter((p) => p.category === id).length
   const published = site.projects.filter((p) => p.status === 'published').length
@@ -229,11 +261,11 @@ export function Work() {
       <div className="wrap">
         <SectionHead
           index="01"
-          title="Work"
-          aside={`${pad(published)} finished · ${pad(site.categories.length)} categories`}
+          title="Portfolio"
+          aside={`${pad(published)} works · ${pad(site.categories.length)} categories`}
         />
         <div className={styles.head}>
-          <RevealText as="h2" id="work-title" text="Render queue." className={styles.h2} />
+          <RevealText as="h2" id="work-title" text="Portfolio." className={styles.h2} />
           <div className={styles.controls}>
             <div className={styles.filters} role="group" aria-label="Filter by category">
               <button type="button" aria-pressed={filter === 'all'} onClick={() => setFilter('all')}>
@@ -251,13 +283,28 @@ export function Work() {
                 </button>
               ))}
             </div>
+            <div className={styles.row2}>
+            <div className={styles.views} role="group" aria-label="Sort works">
+              <span className={styles.groupLabel} aria-hidden="true">
+                Sort
+              </span>
+              {SORTS.map((s) => (
+                <button type="button" key={s.id} aria-pressed={sort === s.id} onClick={() => setSort(s.id)}>
+                  {s.label}
+                </button>
+              ))}
+            </div>
             <div className={styles.views} role="group" aria-label="Layout">
+              <span className={styles.groupLabel} aria-hidden="true">
+                View
+              </span>
               <button type="button" aria-pressed={view === 'reel'} onClick={() => setView('reel')}>
                 Reel
               </button>
               <button type="button" aria-pressed={view === 'index'} onClick={() => setView('index')}>
                 Index
               </button>
+            </div>
             </div>
           </div>
           {filter !== 'all' && <p className={styles.blurb}>{categoryOf(filter).blurb}</p>}
@@ -269,7 +316,7 @@ export function Work() {
           <Index projects={projects} />
         </div>
       ) : wide && !reduced ? (
-        <Reel key={filter} projects={projects} />
+        <Reel key={`${filter}-${sort}`} projects={projects} />
       ) : (
         <div className="wrap">
           <Stack projects={projects} />

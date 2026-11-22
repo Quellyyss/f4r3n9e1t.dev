@@ -36,21 +36,13 @@ export const site: SiteConfig = {
     role: 'Independent 3D Artist & Digital Creator',
     description:
       'Independent 3D artist working in Blender — characters, rooms, objects and the light between them.',
-    siteTitle: 'made by f4r3n9e1t — Independent 3D Artist & Digital Creator',
+    siteTitle: 'f4r3n9e1t — 3D Portfolio',
   },
 
   hero: {
     statement: 'Turning imagination into geometry.',
   },
 
-  about: {
-    headline: "Building worlds that don't exist.",
-    lines: ['Turning imagination into geometry.', 'Made in Blender.', 'Driven by imagination.'],
-    bio: [
-      'f4r3n9e1t is an independent 3D artist. Every piece starts as something that does not exist yet — a character, a room, a single object — and ends as geometry, light and a frame.',
-      'The work moves between collectible-figure characters, lived-in environments, product-style modelling and short vertical animation. Most of it is built, lit and rendered in Blender.',
-    ],
-  },
 
   /** sockets on the "output" node of the toolset graph */
   disciplines: ['Modeling', 'Texturing', 'Lighting & Render', 'Animation', 'Post & Edit', 'Web 3D'],
@@ -93,6 +85,7 @@ export const site: SiteConfig = {
       title: 'Molly',
       category: 'character',
       year: 2026,
+      date: '2026-11-09',
       status: 'published',
       summary:
         'A collectible-figure character: heavy bangs, half-closed eyes, an energy can in one hand and a phone in the other.',
@@ -141,6 +134,7 @@ export const site: SiteConfig = {
       title: 'Molly’s Room',
       category: 'environment',
       year: 2026,
+      date: '2026-11-09',
       status: 'published',
       summary: 'A teenage bedroom at night: string lights, a CRT, posters on every wall and rain on the window.',
       cover: img('mollys-room', 'cover', 1080, 1920, 'Night bedroom with string lights, posters, bed and rainy window'),
@@ -178,6 +172,7 @@ export const site: SiteConfig = {
       title: '3D Modeling — Ad Campaign',
       category: 'modeling',
       year: 2026,
+      date: '2026-11-17',
       status: 'published',
       summary:
         'A red-chrome poster campaign for 3D modelling commissions: chrome title, four showcase models, three formats and an animated loop.',
@@ -217,6 +212,7 @@ export const site: SiteConfig = {
       title: 'Dream Sequence',
       category: 'animation',
       year: 2026,
+      date: '2026-11-10',
       status: 'published',
       summary: 'Molly finally sits on the bed of her room. Fifteen seconds, vertical, made for the phone screen.',
       cover: img('dream-sequence', 'cover', 1080, 1920, 'Molly sitting on the bed in her room, neon signature on the wall'),
@@ -243,6 +239,7 @@ export const site: SiteConfig = {
       title: 'Dusk Courtyard',
       category: 'animation',
       year: 2026,
+      date: '2026-11-14',
       status: 'published',
       summary: 'Molly leans on a brick wall under a purple dusk sky. A slow handheld camera, wind in the trees.',
       cover: img('dusk-courtyard', 'cover', 1080, 1920, 'Molly leaning on a wall at dusk under a neon sign'),
