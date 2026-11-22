@@ -1,0 +1,50 @@
+:root {
+  /* colour — see docs/01_PREPRODUCTION.md */
+  --void: #070707;
+  --graphite-1: #0e0e10;
+  --graphite-2: #151518;
+  --graphite-3: #1f1f23;
+  --line: #26262b;
+  --line-strong: #3a3a40;
+  --steel: #6c7076;
+  --fog: #a7abb1;
+  --bone: #e7e3da;
+  --blood: #d0161f;
+  --blood-dim: #5c0a0e;
+  --neon-core: #ffe3e3;
+  --neon-glow: #ff2b2b;
+
+  /* type */
+  --f-display: 'Archivo Variable', 'Arial Narrow', system-ui, sans-serif;
+  --f-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  --f-serif: 'Instrument Serif', 'Times New Roman', serif;
+
+  --t-mega: clamp(4.5rem, 21vw, 22rem);
+  --t-h1: clamp(3rem, 9vw, 9rem);
+  --t-h2: clamp(2.25rem, 5.2vw, 5rem);
+  --t-h3: clamp(1.375rem, 2vw, 2rem);
+  --t-lead: clamp(1.125rem, 1.5vw, 1.5rem);
+  --t-body: 1rem;
+  --t-meta: 0.75rem;
+
+  /* layout */
+  --margin: clamp(16px, 4vw, 64px);
+  --gutter: clamp(12px, 1.6vw, 24px);
+  --nav-h: 64px;
+  --section-gap: clamp(96px, 16vw, 240px);
+
+  /* motion */
+  --ease-out: cubic-bezier(0.2, 0.7, 0, 1);
+  --ease-in-out: cubic-bezier(0.7, 0, 0.2, 1);
+  --d-fast: 240ms;
+  --d-mid: 480ms;
+  --d-slow: 900ms;
+
+  color-scheme: dark;
+}
+
+@media (max-width: 720px) {
+  :root {
+    --nav-h: 56px;
+  }
+}

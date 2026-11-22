@@ -1,0 +1,32 @@
+.page {
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  gap: 20px;
+  padding-top: var(--nav-h);
+  /* an empty render region, centred */
+  background:
+    linear-gradient(var(--void), var(--void)) padding-box,
+    repeating-linear-gradient(90deg, var(--blood) 0 6px, transparent 6px 12px) top / 100% 1px no-repeat;
+}
+.title {
+  font-weight: 800;
+  font-stretch: 64%;
+  font-size: var(--t-h1);
+  line-height: 0.86;
+  text-transform: uppercase;
+  max-width: 10ch;
+}
+.text {
+  color: var(--fog);
+  max-width: 44ch;
+}
+.link {
+  justify-self: start;
+  font-family: var(--f-mono);
+  font-size: var(--t-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--blood);
+}

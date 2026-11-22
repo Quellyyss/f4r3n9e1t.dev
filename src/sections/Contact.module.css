@@ -1,0 +1,120 @@
+.contact {
+  padding-top: var(--section-gap);
+}
+
+.headline {
+  display: grid;
+  padding: clamp(40px, 6vw, 80px) 0 clamp(48px, 7vw, 96px);
+  font-weight: 800;
+  font-stretch: 64%;
+  font-size: clamp(2.75rem, 11.5vw, 14rem);
+  line-height: 0.84;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.line {
+  display: block;
+  white-space: nowrap;
+}
+.line:nth-child(2) {
+  padding-left: 12vw;
+}
+.line .rw > span {
+  transition-delay: calc(var(--i) * 90ms);
+}
+
+/* the "wireframe" line: outline that renders solid red on hover */
+.wire {
+  position: relative;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--fog);
+}
+.wire::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--blood);
+  -webkit-text-stroke: 0;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 900ms var(--ease-in-out);
+  pointer-events: none;
+}
+.headline:hover .wire::after {
+  clip-path: inset(0 0 0 0);
+}
+
+.list {
+  border-top: 1px solid var(--line);
+}
+.row {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  align-items: center;
+  min-height: 72px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+.row dt {
+  grid-column: 1 / span 3;
+}
+.value {
+  grid-column: 4 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-weight: 600;
+  font-stretch: 82%;
+  font-size: clamp(1.25rem, 2.4vw, 2.25rem);
+  line-height: 1.1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.link {
+  background: linear-gradient(var(--blood), var(--blood)) left bottom / 0 1px no-repeat;
+  transition:
+    background-size var(--d-mid) var(--ease-out),
+    color var(--d-fast);
+}
+.link:hover,
+.link:focus-visible {
+  background-size: 100% 1px;
+  color: var(--bone);
+}
+.empty {
+  color: var(--steel);
+  font-family: var(--f-mono);
+  font-weight: 400;
+  font-size: var(--t-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.copy {
+  flex: none;
+  font-family: var(--f-mono);
+  font-size: var(--t-meta);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 12px 18px;
+  border: 1px solid var(--blood);
+  transition: background-color var(--d-fast);
+}
+.copy:hover {
+  background: var(--blood);
+}
+
+@media (max-width: 720px) {
+  .line:nth-child(2) {
+    padding-left: 6vw;
+  }
+  .row dt {
+    grid-column: 1 / -1;
+  }
+  .value {
+    grid-column: 1 / -1;
+  }
+}

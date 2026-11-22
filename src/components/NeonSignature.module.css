@@ -1,0 +1,78 @@
+.neon {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35em;
+  color: var(--neon-core);
+  white-space: nowrap;
+  text-shadow:
+    0 0 1px #fff,
+    0 0 4px var(--neon-glow),
+    0 0 12px var(--neon-glow),
+    0 0 28px rgba(255, 43, 43, 0.55),
+    0 0 60px rgba(255, 43, 43, 0.3);
+}
+
+/* the tubes switch on once the signature is in view, then hum */
+.neon[data-reveal] {
+  opacity: 0.12;
+  transform: none;
+  text-shadow: none;
+  color: var(--steel);
+  transition: none;
+}
+.neon[data-reveal][data-inview] {
+  opacity: 1;
+  color: var(--neon-core);
+  text-shadow:
+    0 0 1px #fff,
+    0 0 4px var(--neon-glow),
+    0 0 12px var(--neon-glow),
+    0 0 28px rgba(255, 43, 43, 0.55),
+    0 0 60px rgba(255, 43, 43, 0.3);
+  animation:
+    ignite 1.1s steps(1) 0.2s backwards,
+    hum 7s ease-in-out 1.6s infinite;
+}
+
+@keyframes ignite {
+  0% { opacity: 0.15; }
+  12% { opacity: 1; }
+  18% { opacity: 0.2; }
+  30% { opacity: 0.9; }
+  36% { opacity: 0.3; }
+  52% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes hum {
+  0%, 100% { opacity: 1; }
+  47% { opacity: 1; }
+  48% { opacity: 0.72; }
+  49% { opacity: 1; }
+  50% { opacity: 0.85; }
+  51% { opacity: 1; }
+}
+
+.made {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 1.15em;
+  letter-spacing: 0.01em;
+}
+
+.nick {
+  font-family: var(--f-mono);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.sm { font-size: 0.875rem; }
+.md { font-size: clamp(1rem, 1.6vw, 1.375rem); }
+.lg { font-size: clamp(1.75rem, 6.4vw, 6rem); }
+
+@media (prefers-reduced-motion: reduce) {
+  .neon[data-reveal] {
+    opacity: 1;
+    color: var(--neon-core);
+  }
+}

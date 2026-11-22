@@ -1,0 +1,193 @@
+.toolset {
+  padding-top: var(--section-gap);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: 24px;
+  padding: clamp(32px, 5vw, 64px) 0 clamp(32px, 4vw, 56px);
+}
+.h2 {
+  grid-column: 1 / span 8;
+  font-weight: 800;
+  font-stretch: 66%;
+  font-size: var(--t-h2);
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+.note {
+  grid-column: 9 / span 4;
+  align-self: end;
+  color: var(--fog);
+  max-width: 38ch;
+}
+
+/* ── graph canvas: Blender's node editor grid ───────── */
+.graph {
+  position: relative;
+  height: 600px;
+  border: 1px solid var(--line);
+  background-color: var(--graphite-1);
+  background-image:
+    linear-gradient(var(--graphite-2) 1px, transparent 1px),
+    linear-gradient(90deg, var(--graphite-2) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: -1px -1px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.noodles {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.noodles path {
+  fill: none;
+  stroke: var(--line-strong);
+  stroke-width: 1.5;
+  transition: stroke var(--d-fast);
+}
+.noodles path[data-hot] {
+  stroke: var(--blood);
+  stroke-width: 2;
+}
+
+.node {
+  position: absolute;
+  width: 230px;
+  background: var(--graphite-2);
+  border: 1px solid var(--line-strong);
+  font-size: 0.875rem;
+  line-height: 1.45;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  transition: border-color var(--d-fast);
+}
+.node[data-hot] {
+  border-color: var(--blood);
+}
+.nodeHead {
+  padding: 8px 12px;
+  background: var(--graphite-3);
+  border-bottom: 1px solid var(--line-strong);
+  font-family: var(--f-mono);
+  font-size: var(--t-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bone);
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+.nodeHead:active {
+  cursor: grabbing;
+}
+.node[data-static] .nodeHead {
+  cursor: default;
+}
+.nodeBody {
+  display: grid;
+  gap: 8px;
+  padding: 10px 12px 12px;
+  color: var(--fog);
+}
+.outRow {
+  position: relative;
+  justify-self: end;
+  font-family: var(--f-mono);
+  font-size: var(--t-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--steel);
+  padding-right: 4px;
+}
+.socket {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--fog);
+  border: 2px solid var(--graphite-2);
+  box-sizing: content-box;
+}
+.outRow .socket {
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.node[data-hot] .outRow .socket {
+  background: var(--blood);
+}
+
+.output {
+  width: 250px;
+}
+.output .nodeHead {
+  background: var(--blood-dim);
+}
+.inRow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  color: var(--fog);
+  transition: color var(--d-fast);
+}
+.inRow .socket {
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.inRow[data-hot] {
+  color: var(--bone);
+}
+.inRow[data-hot] .socket {
+  background: var(--blood);
+}
+.feedCount {
+  margin-left: auto;
+  font-family: var(--f-mono);
+  font-size: var(--t-meta);
+  color: var(--steel);
+}
+
+/* ── list (phones / tablets) ────────────────────────── */
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: 12px;
+}
+.list .node {
+  position: relative;
+  width: auto;
+  margin: 0;
+  box-shadow: none;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.chips span {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border: 1px solid var(--line-strong);
+  color: var(--bone);
+}
+
+@media (max-width: 900px) {
+  .h2,
+  .note {
+    grid-column: 1 / -1;
+  }
+}

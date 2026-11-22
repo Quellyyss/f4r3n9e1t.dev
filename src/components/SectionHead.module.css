@@ -1,0 +1,24 @@
+.head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--f-mono);
+  font-size: var(--t-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fog);
+}
+.index {
+  color: var(--blood);
+}
+.title {
+  color: var(--bone);
+}
+.rule {
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.aside {
+  white-space: nowrap;
+}

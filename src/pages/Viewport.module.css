@@ -1,0 +1,81 @@
+.page {
+  position: relative;
+  height: 100svh;
+  min-height: 480px;
+  overflow: hidden;
+  background:
+    linear-gradient(var(--graphite-1) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(90deg, var(--graphite-1) 1px, transparent 1px) 0 0 / 48px 48px,
+    var(--void);
+}
+.host {
+  position: absolute;
+  inset: 0;
+  touch-action: none;
+}
+.ui {
+  position: absolute;
+  inset: calc(var(--nav-h) + 8px) var(--margin) 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
+  pointer-events: none;
+}
+.ui > * {
+  grid-column: 1;
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+.exit {
+  pointer-events: auto;
+  padding: 6px 0;
+  color: var(--bone);
+}
+.exit:hover {
+  color: var(--blood);
+}
+.modes {
+  grid-row: 3;
+  justify-self: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  pointer-events: auto;
+}
+.modes button {
+  font-family: var(--f-mono);
+  font-size: var(--t-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  border: 1px solid var(--line-strong);
+  background: rgba(7, 7, 7, 0.7);
+  transition: border-color var(--d-fast);
+}
+.modes button[aria-checked='true'] {
+  border-color: var(--blood);
+}
+.key {
+  color: var(--blood);
+}
+.hint {
+  grid-row: 3;
+  align-self: end;
+  justify-self: start;
+}
+.nogl {
+  align-self: center;
+  justify-self: center;
+  color: var(--fog);
+}
+
+@media (max-width: 1100px) {
+  .modes {
+    align-self: end;
+    margin-bottom: 36px;
+  }
+}

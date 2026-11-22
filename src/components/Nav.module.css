@@ -1,0 +1,133 @@
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  height: var(--nav-h);
+  padding-inline: var(--margin);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  font-family: var(--f-mono);
+  font-size: var(--t-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bone);
+  mix-blend-mode: difference;
+}
+
+.logo {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+.mark {
+  width: 12px;
+  height: 9px;
+  border: 1px dashed currentColor;
+}
+
+.links {
+  display: flex;
+  gap: clamp(12px, 2.4vw, 36px);
+}
+
+.link {
+  position: relative;
+  display: inline-flex;
+  gap: 6px;
+  padding: 8px 2px;
+}
+.link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--d-mid) var(--ease-out);
+}
+.link:hover::after,
+.link[aria-current='true']::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.num {
+  opacity: 0.5;
+}
+
+.toggle {
+  display: none;
+  position: relative;
+  z-index: 2;
+  font-family: var(--f-mono);
+  font-size: var(--t-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 10px 0 10px 16px;
+}
+
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  padding: calc(var(--nav-h) + 24px) var(--margin) 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--graphite-1);
+  mix-blend-mode: normal;
+}
+.menu[hidden] {
+  display: none;
+}
+
+.menuList {
+  display: grid;
+  gap: 4px;
+}
+.menuList li {
+  border-bottom: 1px solid var(--line);
+}
+.menuList a {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 10px 0 6px;
+  font-family: var(--f-display);
+  font-stretch: 70%;
+  font-weight: 700;
+  font-size: clamp(2.75rem, 14vw, 5rem);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+.menuList .num {
+  font-family: var(--f-mono);
+  font-size: var(--t-meta);
+  font-weight: 400;
+  color: var(--blood);
+  opacity: 1;
+}
+
+@media (max-width: 720px) {
+  .links {
+    display: none;
+  }
+  .toggle {
+    display: block;
+  }
+}
+
+.nav[data-menu] {
+  mix-blend-mode: normal;
+}

@@ -1,0 +1,54 @@
+.wipe {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 150;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.boot {
+  position: fixed;
+  inset: 0;
+  z-index: 160;
+  display: grid;
+  place-content: center;
+  gap: 20px;
+  padding: var(--margin);
+  pointer-events: none;
+  font-family: var(--f-mono);
+  font-size: var(--t-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fog);
+}
+
+.bootTitle {
+  color: var(--bone);
+}
+.bootTitle span {
+  color: var(--blood);
+  text-transform: none;
+}
+
+.steps {
+  display: grid;
+  gap: 6px;
+  width: min(280px, 80vw);
+}
+.steps li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  color: var(--steel);
+  transition: color var(--d-fast);
+}
+.steps li[data-state='done'] {
+  color: var(--bone);
+}
+.dots {
+  flex: 1;
+  border-bottom: 1px dotted var(--line-strong);
+  transform: translateY(-3px);
+}

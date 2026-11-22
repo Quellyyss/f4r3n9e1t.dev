@@ -1,0 +1,383 @@
+.work {
+  position: relative;
+  padding-top: var(--section-gap);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: 24px;
+  padding-top: clamp(32px, 5vw, 64px);
+  padding-bottom: clamp(32px, 4vw, 56px);
+}
+.h2 {
+  grid-column: 1 / span 7;
+  font-weight: 800;
+  font-stretch: 68%;
+  font-size: var(--t-h1);
+  line-height: 0.86;
+  text-transform: uppercase;
+  letter-spacing: -0.015em;
+}
+.controls {
+  grid-column: 8 / span 5;
+  align-self: end;
+  display: grid;
+  gap: 16px;
+  justify-items: end;
+}
+.blurb {
+  grid-column: 8 / span 5;
+  justify-self: end;
+  text-align: right;
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: var(--t-lead);
+  color: var(--fog);
+}
+
+.filters,
+.views {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+.filters button,
+.views button {
+  font-family: var(--f-mono);
+  font-size: var(--t-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  color: var(--fog);
+  transition:
+    border-color var(--d-fast),
+    color var(--d-fast),
+    background-color var(--d-fast);
+}
+.filters button:hover:not(:disabled),
+.views button:hover {
+  border-color: var(--line-strong);
+  color: var(--bone);
+}
+.filters button[aria-pressed='true'],
+.views button[aria-pressed='true'] {
+  border-color: var(--blood);
+  color: var(--bone);
+  background: rgba(208, 22, 31, 0.08);
+}
+.filters button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.filters sup {
+  font-size: 0.85em;
+  color: var(--steel);
+  margin-left: 2px;
+}
+.fIndex {
+  color: var(--blood);
+}
+
+/* ── shared caption ─────────────────────────────────── */
+.caption {
+  display: grid;
+  gap: 2px;
+  padding-top: 14px;
+}
+.title {
+  font-weight: 700;
+  font-stretch: 82%;
+  font-size: var(--t-h3);
+  line-height: 1.05;
+  letter-spacing: -0.005em;
+  transition: color var(--d-fast);
+}
+.demo {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 1px 6px;
+  border: 1px dashed var(--blood);
+  color: var(--bone);
+}
+
+/* ── reel ───────────────────────────────────────────── */
+.reelOuter {
+  --reel: 0;
+  position: relative;
+}
+.reelSticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.track {
+  display: flex;
+  align-items: center;
+  gap: clamp(40px, 6vw, 120px);
+  padding-inline: var(--margin) 0;
+  will-change: transform;
+}
+.frame {
+  --h: min(58vh, 640px);
+  flex: none;
+  width: calc(var(--h) * var(--ratio));
+  max-width: 78vw;
+}
+.frame:nth-child(odd) {
+  transform: translateY(-5vh);
+}
+.frame:nth-child(even) {
+  transform: translateY(7vh);
+}
+.media {
+  position: relative;
+  height: var(--h);
+  overflow: hidden;
+}
+.media img {
+  transition:
+    opacity 300ms linear,
+    transform 1200ms var(--ease-out) !important;
+}
+.frame:hover .media img,
+.frame:focus-visible .media img {
+  transform: scale(1.035) !important;
+}
+.frame:hover .title,
+.stackLink:hover .title {
+  color: var(--blood);
+}
+
+/* crop marks — appear on hover like a selected frame */
+.crop {
+  position: absolute;
+  inset: 10px;
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    opacity var(--d-mid) var(--ease-out),
+    inset var(--d-mid) var(--ease-out);
+  background:
+    linear-gradient(var(--bone), var(--bone)) top left / 14px 1px,
+    linear-gradient(var(--bone), var(--bone)) top left / 1px 14px,
+    linear-gradient(var(--bone), var(--bone)) top right / 14px 1px,
+    linear-gradient(var(--bone), var(--bone)) top right / 1px 14px,
+    linear-gradient(var(--bone), var(--bone)) bottom left / 14px 1px,
+    linear-gradient(var(--bone), var(--bone)) bottom left / 1px 14px,
+    linear-gradient(var(--bone), var(--bone)) bottom right / 14px 1px,
+    linear-gradient(var(--bone), var(--bone)) bottom right / 1px 14px;
+  background-repeat: no-repeat;
+}
+.frame:hover .crop,
+.frame:focus-visible .crop {
+  opacity: 1;
+  inset: 16px;
+}
+
+.endCard {
+  flex: none;
+  width: min(36vw, 520px);
+  padding-right: var(--margin);
+  margin-right: 8vw;
+  display: grid;
+  gap: 12px;
+}
+.endText {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: var(--t-h2);
+  line-height: 1;
+}
+.endLink {
+  justify-self: start;
+  font-family: var(--f-mono);
+  font-size: var(--t-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--blood);
+}
+
+.progress {
+  position: absolute;
+  left: var(--margin);
+  right: var(--margin);
+  bottom: clamp(20px, 4vh, 36px);
+  height: 1px;
+  background: var(--line);
+}
+.progress span {
+  display: block;
+  height: 100%;
+  background: var(--blood);
+  transform-origin: left;
+  transform: scaleX(var(--reel));
+}
+
+/* ── stack ──────────────────────────────────────────── */
+.stack {
+  display: grid;
+  gap: clamp(56px, 10vw, 120px);
+  padding-bottom: 24px;
+}
+.stackItem[data-shape='tall'] {
+  width: min(78%, 520px);
+}
+.stackItem[data-shape='tall']:nth-child(even) {
+  justify-self: end;
+}
+.stackItem[data-shape='wide'] {
+  width: 100%;
+}
+.stackLink {
+  display: block;
+}
+
+/* ── index ──────────────────────────────────────────── */
+.index {
+  border-top: 1px solid var(--line);
+}
+.row {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) minmax(0, 18rem) 56px;
+  align-items: baseline;
+  gap: var(--gutter);
+  padding: clamp(14px, 2vw, 26px) 0;
+  border-bottom: 1px solid var(--line);
+  transition:
+    padding var(--d-mid) var(--ease-out),
+    color var(--d-fast);
+}
+.row:hover,
+.row:focus-visible {
+  padding-left: 12px;
+}
+.rowNum {
+  color: var(--blood);
+}
+.rowTitle {
+  font-weight: 700;
+  font-stretch: 72%;
+  font-size: clamp(1.875rem, 5vw, 4.5rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  transition: color var(--d-fast);
+}
+.row:hover .rowTitle {
+  color: var(--blood);
+}
+.rowYear {
+  text-align: right;
+}
+.rowThumb {
+  display: none;
+}
+
+.preview {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 80;
+  width: 220px;
+  aspect-ratio: 4 / 5;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--d-fast);
+  background: var(--graphite-1);
+}
+.preview[data-visible] {
+  opacity: 1;
+}
+.preview img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 200ms;
+}
+.preview img[data-active] {
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+  .h2,
+  .controls,
+  .blurb {
+    grid-column: 1 / -1;
+  }
+  .controls {
+    justify-items: start;
+  }
+  .filters,
+  .views {
+    justify-content: flex-start;
+  }
+  .blurb {
+    justify-self: start;
+    text-align: left;
+  }
+}
+
+@media (max-width: 720px) {
+  .row {
+    grid-template-columns: 28px minmax(0, 1fr) 72px;
+    grid-template-areas:
+      'num title thumb'
+      'num cat thumb';
+    row-gap: 6px;
+    align-items: start;
+  }
+  .rowNum {
+    grid-area: num;
+  }
+  .rowTitle {
+    grid-area: title;
+  }
+  .rowCat {
+    grid-area: cat;
+  }
+  .rowYear {
+    display: none;
+  }
+  .rowThumb {
+    display: block;
+    grid-area: thumb;
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+  }
+  .stackItem[data-shape='tall'] {
+    width: 84%;
+  }
+}
+
+/* phones: one swipeable row of filters instead of five wrapped lines */
+@media (max-width: 600px) {
+  .filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    width: calc(100% + var(--margin));
+    margin-right: calc(var(--margin) * -1);
+    padding-right: var(--margin);
+    scrollbar-width: none;
+  }
+  .filters::-webkit-scrollbar {
+    display: none;
+  }
+  .filters button {
+    flex: none;
+  }
+  .controls {
+    min-width: 0;
+  }
+}

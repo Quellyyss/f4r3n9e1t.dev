@@ -1,0 +1,38 @@
+.player {
+  position: relative;
+  width: 100%;
+  background: var(--graphite-1);
+  overflow: hidden;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.controls {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  display: flex;
+  gap: 6px;
+}
+
+.btn {
+  font-family: var(--f-mono);
+  font-size: var(--t-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  background: rgba(7, 7, 7, 0.72);
+  border: 1px solid var(--line-strong);
+  color: var(--bone);
+  transition:
+    border-color var(--d-fast),
+    color var(--d-fast);
+}
+.btn:hover,
+.btn[aria-pressed='true'] {
+  border-color: var(--blood);
+}

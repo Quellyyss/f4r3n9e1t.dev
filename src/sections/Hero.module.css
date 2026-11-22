@@ -1,0 +1,224 @@
+.hero {
+  position: relative;
+  height: 175svh;
+}
+
+.stage {
+  --p: 0;
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 520px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 52%, rgba(208, 22, 31, 0.07), transparent 70%),
+    var(--void);
+}
+
+/* ── the giant nick: outline = wireframe, fill = rendered ── */
+.word {
+  --fs: 18vw;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(calc(-50% - var(--p) * 6vh));
+  z-index: 0;
+  display: grid;
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: var(--fs);
+  line-height: 0.8;
+  letter-spacing: -0.01em;
+  text-transform: lowercase;
+  pointer-events: none;
+  user-select: none;
+}
+.outline,
+.fill {
+  grid-area: 1 / 1;
+  display: grid;
+  justify-items: center;
+}
+.outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(167, 171, 177, 0.34);
+}
+.fill {
+  color: var(--bone);
+  clip-path: inset(50% 50% 50% 50%);
+}
+.line {
+  display: block;
+  white-space: nowrap;
+}
+.letter {
+  display: inline-block;
+  font-stretch: 78%;
+}
+
+/* ── WebGL host ──────────────────────────────────────── */
+.host {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 1200ms var(--ease-out);
+}
+.host[data-ready] {
+  opacity: 1;
+}
+.host:has(.fallback) {
+  opacity: 1;
+  display: grid;
+  place-items: center;
+}
+.fallback {
+  width: min(42vw, 300px);
+  fill: none;
+  stroke: rgba(167, 171, 177, 0.5);
+  stroke-width: 0.6;
+}
+.fallback path:first-child {
+  fill: var(--graphite-2);
+}
+.seam {
+  stroke: var(--blood);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 6px var(--neon-glow));
+}
+
+/* ── render region frame (Blender's Ctrl+B border) ───── */
+.region {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  pointer-events: none;
+  border: 1px dashed var(--blood);
+  will-change: transform, width, height;
+}
+.region span {
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  transform: translateY(-100%);
+  padding: 3px 6px;
+  background: var(--blood);
+  color: var(--bone);
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ── captions ────────────────────────────────────────── */
+.top,
+.bottom {
+  position: absolute;
+  left: var(--margin);
+  right: var(--margin);
+  z-index: 3;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  opacity: calc(1 - var(--p) * 2.2);
+}
+.top {
+  top: calc(var(--nav-h) + 12px);
+  align-items: start;
+}
+.top > p {
+  grid-column: 1 / span 4;
+  color: var(--bone);
+}
+.cats {
+  grid-column: 9 / span 4;
+  justify-self: end;
+  text-align: right;
+  display: grid;
+  gap: 2px;
+}
+.cats span {
+  color: var(--blood);
+}
+
+.bottom {
+  bottom: clamp(20px, 4vh, 40px);
+  align-items: end;
+}
+.statement {
+  grid-column: 1 / span 4;
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: clamp(1.375rem, 2.2vw, 2.25rem);
+  line-height: 1.05;
+  color: var(--bone);
+  max-width: 14ch;
+}
+.neon {
+  grid-column: 5 / span 4;
+  justify-self: center;
+  margin-bottom: 4px;
+}
+.hint {
+  grid-column: 9 / span 4;
+  justify-self: end;
+  display: grid;
+  gap: 4px;
+  text-align: right;
+}
+.scroll {
+  color: var(--steel);
+}
+
+@media (max-width: 900px) {
+  .cats {
+    display: none;
+  }
+  .top > p {
+    grid-column: 1 / -1;
+  }
+  .bottom {
+    row-gap: 14px;
+  }
+  .statement {
+    grid-column: 1 / span 7;
+  }
+  .hint {
+    grid-column: 8 / span 5;
+  }
+  .neon {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: start;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    height: 160svh;
+  }
+  .word {
+    line-height: 0.82;
+    top: 44%;
+  }
+  .statement {
+    grid-column: 1 / -1;
+  }
+  .hint {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    justify-self: start;
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero {
+    height: 100svh;
+  }
+}
