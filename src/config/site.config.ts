@@ -271,6 +271,52 @@ export const site: SiteConfig = {
       tools: ['Blender'],
     },
     {
+      slug: 'gothic-fairy',
+      title: 'Gothic Fairy',
+      category: 'animation',
+      year: 2026,
+      date: '2026-11-23',
+      status: 'published',
+      summary: 'A tiny gothic fairy sits on a cigarette pack by an old CRT and holds a smouldering cigarette bigger than herself. 20 seconds, vertical.',
+      cover: img('gothic-fairy', 'cover', 1080, 1920, 'Gothic fairy on a cigarette pack holding a smouldering cigarette, CRT monitor behind her'),
+      idea: [
+        'A still, moody shot: a fairy in a corset gown and tulle skirt sits on the desk, the cigarette burns down slowly, smoke curls up into the monitor light.',
+        'The CRT screen types out “made by f4r3n9e1t” through scanline interference and glitch bursts.',
+      ],
+      film: video('gothic-fairy', 'clip.mp4', 'cover.webp', 720, 1280, 'Gothic Fairy, 20-second clip'),
+      process: [
+        {
+          title: 'Props at 20× scale',
+          text: 'The character is a real-size 1.6 m figure and every prop is scaled up twenty times, so the cigarette is as long as her body and the pack is her bench.',
+        },
+        {
+          title: 'Hands that hold',
+          text: 'The grip is solved by script against the glove mesh: palms sit a few millimetres off the paper and the fingers wrap without sinking into the cigarette.',
+        },
+        {
+          title: 'Burning down',
+          text: 'A shader draws ash, a char band and a hot ring from the tip; a shape key shortens the cigarette, faster on every drag, until more than half is smoked.',
+        },
+        {
+          title: 'Tulle skirt',
+          text: 'Three tattered tulle layers are cloth-simulated in the seated pose, frozen, then puffed up for a full, tiered silhouette.',
+        },
+      ],
+      gallery: [
+        img('gothic-fairy', 'still-01', 1080, 1920, 'First frame: the cigarette is not lit yet'),
+        img('gothic-fairy', 'still-02', 1080, 1920, 'Glitch burst on the monitor, smoke rising'),
+        img('gothic-fairy', 'still-03', 1080, 1920, 'Late frame: the cigarette has burned down'),
+      ],
+      tech: [
+        { label: 'Software', value: 'Blender 5.0' },
+        { label: 'Renderer', value: 'Cycles, 128 samples, denoised' },
+        { label: 'Length', value: '20.8 s · 624 frames · 30 fps' },
+        { label: 'Format', value: '1080 × 1920 px, vertical' },
+        { label: 'Pipeline', value: 'Script-built scene, procedural smoke and screen glitch' },
+      ],
+      tools: ['Blender'],
+    },
+    {
       // DEMO SLOT — replace with a real piece or delete this whole object
       slug: 'experiment-slot',
       title: 'Untitled Experiment',

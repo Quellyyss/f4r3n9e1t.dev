@@ -51,6 +51,8 @@ STILLS = {
                        {"cover": 150, "still-01": 10, "still-02": 300, "still-03": 370}),
     "dusk-courtyard": ("PM_YARD/renders/Манюнька.mp4",
                        {"cover": 180, "still-01": 5, "still-02": 360}),
+    "gothic-fairy": ("GOTHIC_FAIRY_CHAPMAN/RENDERS/final/GOTHIC_FAIRY_CHAPMAN_1080x1920_30fps.mp4",
+                     {"cover": 449, "still-01": 0, "still-02": 119, "still-03": 584}),
 }
 
 COPY = {  # plain copies (already web-friendly)
