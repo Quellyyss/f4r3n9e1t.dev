@@ -1,11 +1,14 @@
 """Copy the author's finished renders into public/projects as web-sized WebP.
 
 Sources are READ ONLY (never moved or modified). Re-run any time:
-    python tools/prepare_assets.py
+    python tools/prepare_assets.py               # every project
+    python tools/prepare_assets.py night-train   # only the listed slugs
 Prints width/height of every output so the numbers in site.config.ts stay correct.
+An IMAGES entry can be a path or (path, (left, top, right, bottom)) to crop a detail.
 """
 from pathlib import Path
 import json
+import sys
 import cv2
 from PIL import Image
 
@@ -43,6 +46,11 @@ IMAGES = {
         "scene": "PREMIUM_3D_AD/PREVIEWS/Final_Scene_Preview.png",
         "composition": "PREMIUM_3D_AD/PREVIEWS/Composition_Preview.png",
     },
+    "night-train": {
+        "cover": "NIGHT_TRAIN/renders/NIGHT_TRAIN_still_f0127.png",
+        "clay": "NIGHT_TRAIN/renders/NIGHT_TRAIN_clay_f0127.png",
+        "detail": ("NIGHT_TRAIN/renders/NIGHT_TRAIN_still_f0127.png", (280, 430, 1240, 1150)),
+    },
 }
 
 # stills pulled from the final animation renders (frame numbers are 0-based)
@@ -53,6 +61,8 @@ STILLS = {
                        {"cover": 180, "still-01": 5, "still-02": 360}),
     "gothic-fairy": ("GOTHIC_FAIRY_CHAPMAN/RENDERS/final/GOTHIC_FAIRY_CHAPMAN_1080x1920_30fps.mp4",
                      {"cover": 449, "still-01": 0, "still-02": 119, "still-03": 584}),
+    "night-train": ("NIGHT_TRAIN/renders/NIGHT_TRAIN_1920x1440_30fps.mp4",
+                    {"still-01": 0, "still-02": 203}),
 }
 
 COPY = {  # plain copies (already web-friendly)
@@ -73,11 +83,19 @@ def save(img: Image.Image, slug: str, name: str, report: dict):
 
 
 def main():
+    only = set(sys.argv[1:])
+    wanted = lambda key: not only or key.split("/")[0] in only
     report: dict = {}
     for slug, items in IMAGES.items():
-        for name, rel in items.items():
-            save(Image.open(SRC / rel), slug, name, report)
+        if not wanted(slug):
+            continue
+        for name, spec in items.items():
+            rel, box = spec if isinstance(spec, tuple) else (spec, None)
+            im = Image.open(SRC / rel)
+            save(im.crop(box) if box else im, slug, name, report)
     for slug, (rel, frames) in STILLS.items():
+        if not wanted(slug):
+            continue
         cap = cv2.VideoCapture(str(SRC / rel))
         for name, idx in frames.items():
             cap.set(cv2.CAP_PROP_POS_FRAMES, idx)
@@ -86,6 +104,8 @@ def main():
                 raise SystemExit(f"cannot read frame {idx} of {rel}")
             save(Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)), slug, name, report)
     for dst, rel in COPY.items():
+        if not wanted(dst):
+            continue
         target = OUT / dst
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes((SRC / rel).read_bytes())

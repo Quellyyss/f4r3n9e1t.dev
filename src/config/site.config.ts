@@ -317,6 +317,54 @@ export const site: SiteConfig = {
       tools: ['Blender'],
     },
     {
+      slug: 'night-train',
+      title: 'Night Train',
+      category: 'animation',
+      year: 2026,
+      date: '2026-11-24',
+      status: 'published',
+      summary:
+        'A girl in dark gothic streetwear crouches in the corridor of a night sleeper train while red signal lights slide past the windows. 15 seconds, one handheld shot.',
+      cover: img('night-train', 'cover', 1920, 1440, 'Girl in a white skull-print shirt and wide jeans crouching in a dim train corridor, red light on the walls'),
+      idea: [
+        'A sleeper-car corridor at night, matched to a phone-shot reference: the same framing, the handrail under the windows, the row of compartment doors and the “+21 °C” sign above the vestibule door. Every few seconds a red signal light outside slides along the windows and washes over the walls.',
+        'The outfit comes from a styling reference — an oversized white shirt with a skull print and a red barbed cross, a black tie, extreme-wide acid-wash jeans with crosses, grommet straps and chains, chunky grey sneakers and a black backpack. “made by f4r3n9e1t” is written in blackletter on the wall under the handrail.',
+      ],
+      film: video('night-train', 'clip.mp4', 'cover.webp', 1280, 960, 'Night Train, 15-second clip'),
+      process: [
+        {
+          title: 'Camera match',
+          text: 'Lens, height and tilt solved against frames of the reference: a 49 mm full-frame equivalent at 1.22 m, the figure four metres away. The handheld settle in the first two seconds is kept.',
+        },
+        {
+          title: 'Script-built corridor',
+          text: 'About 260 separate parts — window frames, roller blinds, a handrail on brackets, heater grilles, sliding doors with D-handles, ceiling lamps — each built by script and given its own brushed-steel, laminate or rubber material.',
+          media: img('night-train', 'clay', 1920, 1440, 'Clay render of the corridor and the figure'),
+        },
+        {
+          title: 'Clothes from the pose',
+          text: 'Garments are lofted around the crouching body, folded by the pose — stacked hems, compression under the knees — and pushed out of the body. The chains are separate links that hang under gravity and settle on the denim; 13 300 hair strands fall over the face.',
+        },
+        {
+          title: 'Red signals on cue',
+          text: 'The red flashes are timed frame by frame to the reference: fourteen short bursts from lamps sliding past outside the windows.',
+        },
+      ],
+      gallery: [
+        img('night-train', 'still-01', 1920, 1440, 'First frame, no signal light outside'),
+        img('night-train', 'still-02', 1920, 1440, 'A red signal light slides past the windows'),
+        img('night-train', 'detail', 960, 720, 'Detail: the outfit and the blackletter signature on the wall'),
+      ],
+      tech: [
+        { label: 'Software', value: 'Blender 5.0' },
+        { label: 'Renderer', value: 'Cycles, 160 samples, denoised' },
+        { label: 'Length', value: '15 s · 450 frames · 30 fps' },
+        { label: 'Format', value: '1920 × 1440 px, 4:3' },
+        { label: 'Pipeline', value: 'Script-built scene, procedural garments, 13 300 hair strands' },
+      ],
+      tools: ['Blender'],
+    },
+    {
       // DEMO SLOT — replace with a real piece or delete this whole object
       slug: 'experiment-slot',
       title: 'Untitled Experiment',
