@@ -365,6 +365,62 @@ export const site: SiteConfig = {
       tools: ['Blender'],
     },
     {
+      slug: 'poshly-miras',
+      title: 'ПОШЛЫЙ МИРАС',
+      category: 'animation',
+      year: 2026,
+      date: '2026-11-27',
+      status: 'published',
+      summary:
+        'A photoreal beer can built from a flat label sheet, then a 40-second neon commercial cut to the beat of the track: ice, lightning, water and a zoom that steps closer on every beat.',
+      cover: img('poshly-miras', 'cover', 1920, 1080, 'Black can with a white hand-drawn label between pink and cyan neon tubes, the brand name beside it'),
+      idea: [
+        'A fictional drink, «ПОШЛЫЙ МИРАС», taken from a single reference sheet to a finished product shot and an ad. The label art — a hand-lettered name and a portrait — is wrapped onto a 66 × 149 mm can with cold condensation on the metal.',
+        'The commercial lives on one neon stage in magenta, cyan and amber. Cuts land on bar lines, the lights pulse on the kick, the ice block explodes on the drop, and the camera steps closer on every beat.',
+      ],
+      film: { ...video('poshly-miras', 'clip.mp4', 'cover.webp', 1280, 720, 'ПОШЛЫЙ МИРАС, 40-second commercial'), hasAudio: true },
+      process: [
+        {
+          title: 'Label from the reference',
+          text: 'The label art is cut out of the reference sheet, rescaled to the can’s proportions and turned into an ink mask and a height map, so the white print sits slightly raised on the black aluminium. The lid emboss is built the same way.',
+          media: img('poshly-miras', 'qa', 2000, 379, 'Reference sheet next to the finished renders, checked side by side'),
+        },
+        {
+          title: 'Metal and condensation',
+          text: 'Black-coated and bare aluminium, a brushed lid and about 7 400 drops across the body. Turntable renders — front, sides, back, top and a close-up — are checked against the reference.',
+          media: img('poshly-miras', 'closeup', 1600, 2000, 'Close-up of the label print and water drops'),
+        },
+        {
+          title: 'Cut to the music',
+          text: 'The track is analysed for tempo (117 BPM) and bar lines, and 17 shots are locked to bars. All motion is baked from easing curves; the lens steps in on each beat for the staircase zoom.',
+          media: img('poshly-miras', 'still-01', 1920, 1080, 'Macro shot of the hand-lettered brand name'),
+        },
+        {
+          title: 'Effects',
+          text: 'Voronoi-fractured ice that bursts on the drop, lightning, particle storms, a lake for the fall into water, and a post pass: bloom that breathes with the kick, anamorphic streaks, chromatic aberration and grain.',
+          media: img('poshly-miras', 'still-03', 1920, 1080, 'The ice block shatters around the can'),
+        },
+      ],
+      gallery: [
+        img('poshly-miras', 'hero', 1600, 2000, 'Hero product render of the can'),
+        img('poshly-miras', 'front', 1600, 2000, 'Front view'),
+        img('poshly-miras', 'side', 1600, 2000, 'Side view'),
+        img('poshly-miras', 'back', 1600, 2000, 'Back view'),
+        img('poshly-miras', 'top', 1600, 1600, 'Top view of the lid'),
+        img('poshly-miras', 'still-02', 1920, 1080, 'Lightning across the label'),
+        img('poshly-miras', 'still-04', 1920, 1080, 'The can tilted into frame after the impact'),
+        img('poshly-miras', 'still-05', 1920, 1080, 'Neon tubes reflected in the lake before the can falls'),
+      ],
+      tech: [
+        { label: 'Software', value: 'Blender 5.0' },
+        { label: 'Renderer', value: 'Cycles (OptiX), AgX' },
+        { label: 'Length', value: '40 s · 1196 frames · 30 fps' },
+        { label: 'Format', value: '1920 × 1080 px, 16:9' },
+        { label: 'Pipeline', value: 'Script-built scenes, beat-mapped edit, post in OpenCV' },
+      ],
+      tools: ['Blender'],
+    },
+    {
       // DEMO SLOT — replace with a real piece or delete this whole object
       slug: 'experiment-slot',
       title: 'Untitled Experiment',
